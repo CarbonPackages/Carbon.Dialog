@@ -1,0 +1,15 @@
+prototype(Carbon.Dialog:Button) < prototype(Neos.Fusion:Component) {
+    key = false
+    content = false
+    class = false
+
+    renderer = Neos.Fusion:Tag {
+        tagName = 'button'
+        attributes {
+            type = 'button'
+            class = ${props.class}
+            data-a11y-dialog-show = ${'dialog' + (props.key ? '-' + props.key : '')}
+        }
+        content = ${props.content}
+    }
+}

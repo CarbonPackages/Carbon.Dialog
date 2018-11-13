@@ -1,0 +1,157 @@
+$dialog-index-base: 9999 !default;
+$dialog-overlay-opacity: 0.5 !default;
+$dialog-overlay-background: #000 !default;
+$dialog-background: #fff !default;
+$dialog-border-width: 0 !default;
+$dialog-border-color: false !default;
+$dialog-box-shadow: 0 0 10px !default;
+$dialog-max-width: 850px !default;
+$dialog-margin: 30px !default;
+$dialog-padding: 30px !default;
+
+$dialog-native: false !default;
+
+@if $dialog-native {
+  [data-a11y-dialog-native] {
+    .dialog-overlay {
+      display: none;
+    }
+
+    dialog::backdrop {
+      background-color: rgba($dialog-overlay-background, $dialog-overlay-opacity);
+    }
+  }
+
+  dialog[open] {
+    display: block;
+
+    &::backdrop {
+      animation: overlay 0.2s 1 both;
+    }
+
+    > .dialog-content {
+      animation: content 0.4s 0.15s 1 both;
+    }
+  }
+}
+
+.dialog {
+  &:not([aria-hidden="true"]) {
+    > .dialog-overlay {
+      animation: overlay 0.2s 1 both;
+    }
+
+    > .dialog-content {
+      animation: content 0.4s 0.15s 1 both;
+    }
+  }
+
+  &[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+.dialog-overlay {
+  position: fixed 0;
+  background-color: rgba($dialog-overlay-background, $dialog-overlay-opacity);
+  z-index: $dialog-index-base;
+}
+
+.dialog-title {
+  outline: none;
+}
+
+.dialog-content {
+  background: $dialog-background;
+  z-index: $dialog-index-base + 1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: calc(100vh - #{$dialog-margin});
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: $dialog-padding;
+  width: calc(100vw - #{$dialog-margin});
+  max-width: $dialog-max-width;
+  margin: 0 auto;
+
+  @if $dialog-box-shadow {
+    box-shadow: #{$dialog-box-shadow} rgba($dialog-overlay-background, $dialog-overlay-opacity);
+  }
+
+  @if $dialog-border-width != 0 and $dialog-border-width and $dialog-border-color {
+    border: $dialog-border-width solid $dialog-border-color;
+  } @else {
+    border: 0;
+  }
+
+  @media only screen and (max-width: 400px) {
+    width: 100vw;
+  }
+}
+
+.dialog-close {
+  user-select: none;
+  size: 44px;
+  line-height: 44px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-decoration: none;
+  text-align: center;
+  opacity: 0.65;
+  color: inherit;
+  font-style: normal;
+  font-size: 28px;
+  font-family: Arial, Baskerville, monospace;
+  overflow: visible;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  display: block;
+  outline: none;
+  padding: 0;
+  z-index: $dialog-index-base + 10;
+  box-shadow: none;
+  touch-action: manipulation;
+  text-shadow: 1px 1px 2px #fff;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+}
+
+@keyframes overlay {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes content {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}

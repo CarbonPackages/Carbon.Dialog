@@ -1,0 +1,96 @@
+prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
+    // If you want to use multiple dialogs on one page, you have to set a unique key
+    key = false
+
+    // The title of the dialog
+    title = false
+
+    // The content of the dialog
+    content = false
+
+    // The tag name of the title
+    titleTagName = ${Configuration.setting('Carbon.Dialog.titleTagName')}
+
+    // Make usage of the native <dialog> tag, if possible. Drawback:
+    // If the User click on the background, the modal doesn't get closed
+    native = ${Configuration.setting('Carbon.Dialog.native')}
+    
+    // By default, the dialog behaves as a dialog: it is closable with
+    // the ESC key, and by clicking the backdrop. However, it is possible
+    // to make it work like a "modal", which would remove these features.
+    modal = ${Configuration.setting('Carbon.Dialog.modal')}
+    
+    // If set to false, no close button will be shown
+    closeButton = ${Configuration.setting('Carbon.Dialog.closeButton')}
+
+    renderer = Neos.Fusion:Component {
+        @if.render = ${props.content}
+
+        key = ${props.key}
+        title = ${props.title}
+        content = ${props.content}
+
+        id = ${'dialog' + (props.key ? '-' + props.key : '')}
+        titleTagName = ${props.titleTagName}
+        native = ${props.native}
+        modal = ${props.modal}
+        closeButton = ${props.closeButton}
+
+        renderer = Neos.Fusion:Tag {
+            attributes {
+                id = ${props.id}
+                aria-hidden = ${props.native ? false : 'true'}
+                class = Neos.Fusion:RawArray {
+                    dialog = 'dialog'
+                    id = ${props.key ? props.id : false}
+                }
+            }
+            content = Neos.Fusion:Array {
+                overlay = Neos.Fusion:Tag {
+                    attributes {
+                        class = 'dialog-overlay'
+                        tabindex = '-1'
+                        data-a11y-dialog-hide = ${props.modal ? false : true}
+                    }
+                }
+                dialog = Neos.Fusion:Tag {
+                    tagName = ${props.native ? 'dialog' : 'div'}
+                    attributes {
+                        role = ${props.modal ? 'alertdialog' : props.native ? false : 'dialog'}
+                        aria-labelledby = ${props.title ? props.id + '-title' : false}
+                        class = 'dialog-content'
+                    }
+                    content = Neos.Fusion:Array {
+                        button = Neos.Fusion:Tag {
+                            @if.render = ${props.closeButton}
+                            tagName = 'button'
+                            attributes {
+                                class = 'dialog-close'
+                                type = 'button'
+                                data-a11y-dialog-hide = true
+                                aria-label = ${Translation.translate('dialog.close', null, [], null, 'Carbon.Dialog')}
+                            }
+                            content = ${Type.isString(props.closeButton) ? props.closeButton : ''}
+                        }
+                        title = Neos.Fusion:Tag {
+                            @if.render = ${props.titleTagName && props.title && props.title != true}
+                            tagName = ${props.titleTagName}
+                            attributes {
+                                id = ${props.id + '-title'}
+                                class = Neos.Fusion:RawArray {
+                                    title = 'dialog-title'
+                                    id = ${props.key ? props.id + '-title' : false}
+                                    tabindex = '0'
+                                }
+                            }
+                            content = ${props.title}
+                        }
+                        content = ${props.content}
+                    }
+                }
+            }
+        }
+    }
+}
+
+

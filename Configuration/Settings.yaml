@@ -1,0 +1,19 @@
+Carbon:
+  Dialog:
+    # The tag name of the title
+    titleTagName: h2
+    # Make usage of the native <dialog> tag, if possible. Drawback:
+    # If the User click on the background, the modal doesn't get closed
+    native: false
+    # By default, the dialog behaves as a dialog: it is closable with
+    # the ESC key, and by clicking the backdrop. However, it is possible
+    # to make it work like a "modal", which would remove these features.
+    modal: false
+    # If set to false, no close button will be shown
+    closeButton: '&times;'
+
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        Carbon.Dialog: true
