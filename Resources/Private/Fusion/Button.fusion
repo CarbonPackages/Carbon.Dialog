@@ -2,13 +2,16 @@ prototype(Carbon.Dialog:Button) < prototype(Neos.Fusion:Component) {
     key = false
     content = false
     class = false
+    tagName = 'button'
 
     renderer = Neos.Fusion:Tag {
-        tagName = 'button'
+        tagName = ${props.tagName}
         attributes {
-            type = 'button'
             class = ${props.class}
             data-a11y-dialog-show = ${'dialog' + (props.key ? '-' + props.key : '')}
+            type = ${props.tagName == 'button' ? 'button' : false}
+            role = ${props.tagName != 'button' ? 'button' : false}
+            tabindex = ${props.tagName != 'button' ? '0' : false}
         }
         content = ${props.content}
     }
