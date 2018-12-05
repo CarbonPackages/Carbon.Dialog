@@ -80,8 +80,8 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
                                 class = Neos.Fusion:RawArray {
                                     title = 'dialog-title'
                                     id = ${props.key ? props.id + '-title' : false}
-                                    tabindex = '0'
                                 }
+                                tabindex = '0'
                             }
                             content = ${props.title}
                         }
