@@ -1,5 +1,14 @@
 /.editorconfig export-ignore
+/.eslintignore export-ignore
+/.eslintrc export-ignore
 /.gitattributes export-ignore
-/.github export-ignore
 /.gitignore export-ignore
+/.github export-ignore
+/.jshintrc export-ignore
+/.nvmrc export-ignore
+/.prettierignore export-ignore
 /.prettierrc export-ignore
+/.yarnclean export-ignore
+/gulp_global.yaml export-ignore
+/package.json export-ignore
+/Configuration/Gulp.yaml export-ignore
