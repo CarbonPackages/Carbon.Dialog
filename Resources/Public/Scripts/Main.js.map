@@ -1,1 +1,0 @@
-{"version":3,"sources":["Main.js"],"names":[],"mappings":";;;;;AAAA;AACA","file":"Main.js","sourcesContent":["import A11yDialog from \"./_A11yDialog\";\n\nlet elements = document.querySelectorAll(\".dialog\");\nlet dialogues = [];\n\nfor (let index = 0; index < elements.length; index++) {\n    dialogues.push(new A11yDialog(elements[index]));\n}\n\nexport default dialogues;\n"]}
