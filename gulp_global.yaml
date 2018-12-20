@@ -24,6 +24,4 @@ tasks:
   css:
     sourceMaps: false
     dest: ''
-  pipeline:
-    - js
-    - css
+
