@@ -1,1 +1,1 @@
-import "./Dialog";
+import './Dialog';

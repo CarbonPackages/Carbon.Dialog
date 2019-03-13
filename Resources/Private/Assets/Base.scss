@@ -1,0 +1,30 @@
+@import "Variables";
+
+@if $dialog-native {
+  [data-a11y-dialog-native] {
+    .carbon-dialog__overlay {
+      display: none;
+    }
+
+    dialog::backdrop {
+      background-color: rgba($dialog-overlay-background, $dialog-overlay-opacity);
+    }
+  }
+}
+
+.carbon-dialog[aria-hidden="true"] {
+  display: none;
+}
+
+.carbon-dialog__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $dialog-index-base;
+}
+
+.carbon-dialog__content {
+  z-index: $dialog-index-base + 1;
+}

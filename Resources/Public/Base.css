@@ -1,0 +1,6 @@
+/*!
+ * Carbon.Dialog - created by Jon Uhlmann
+ * @build 2019-03-13 06:21
+ * @link https://github.com/https://github.com/CarbonPackages/Carbon.Dialog
+ */
+.carbon-dialog[aria-hidden=true]{display:none}.carbon-dialog__overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999}.carbon-dialog__content{z-index:10000}

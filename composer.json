@@ -11,7 +11,9 @@
         "carbon"
     ],
     "require": {
-        "neos/fusion": "~3.3 || ~4.0"
+        "neos/fusion": "~3.3 || ~4.0",
+        "neos/fusion-afx": "^1.2",
+        "carbon/eel": "^1.4"
     },
     "authors": [
         {

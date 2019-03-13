@@ -8,7 +8,7 @@ prototype(Carbon.Dialog:Button) < prototype(Neos.Fusion:Component) {
         tagName = ${props.tagName}
         attributes {
             class = ${props.class}
-            data-a11y-dialog-show = ${'dialog' + (props.key ? '-' + props.key : '')}
+            data-a11y-dialog-show = ${BEM.String('carbon-dialog', props.key)}
             type = ${props.tagName == 'button' ? 'button' : false}
             role = ${props.tagName != 'button' ? 'button' : false}
             tabindex = ${props.tagName != 'button' ? '0' : false}

@@ -1,69 +1,39 @@
-$dialog-index-base: 9999 !default;
-$dialog-overlay-opacity: 0.5 !default;
-$dialog-overlay-background: #000 !default;
-$dialog-background: #fff !default;
-$dialog-border-width: 0 !default;
-$dialog-border-color: false !default;
-$dialog-box-shadow: 0 0 10px !default;
-$dialog-max-width: 850px !default;
-$dialog-margin: 30px !default;
-$dialog-padding: 30px !default;
-
-$dialog-native: false !default;
+@import "Base";
 
 @if $dialog-native {
-  [data-a11y-dialog-native] {
-    .dialog-overlay {
-      display: none;
-    }
-
-    dialog::backdrop {
-      background-color: rgba($dialog-overlay-background, $dialog-overlay-opacity);
-    }
-  }
-
   dialog[open] {
     display: block;
 
     &::backdrop {
-      animation: overlay 0.2s 1 both;
+      animation: dialog__overlay 0.2s 1 both;
     }
 
-    > .dialog-content {
-      animation: content 0.4s 0.15s 1 both;
+    > .dialog__content {
+      animation: dialog__content 0.4s 0.15s 1 both;
     }
   }
 }
 
-.dialog {
-  &:not([aria-hidden="true"]) {
-    > .dialog-overlay {
-      animation: overlay 0.2s 1 both;
-    }
-
-    > .dialog-content {
-      animation: content 0.4s 0.15s 1 both;
-    }
+.dialog:not([aria-hidden="true"]) {
+  > .dialog__overlay {
+    animation: dialog__overlay 0.2s 1 both;
   }
 
-  &[aria-hidden="true"] {
-    display: none;
+  > .dialog__content {
+    animation: dialog__content 0.4s 0.15s 1 both;
   }
 }
 
-.dialog-overlay {
-  position: fixed 0;
+.dialog__overlay {
   background-color: rgba($dialog-overlay-background, $dialog-overlay-opacity);
-  z-index: $dialog-index-base;
 }
 
-.dialog-title {
+.dialog__title {
   outline: none;
 }
 
-.dialog-content {
+.dialog__content {
   background: $dialog-background;
-  z-index: $dialog-index-base + 1;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -91,9 +61,10 @@ $dialog-native: false !default;
   }
 }
 
-.dialog-close {
+.dialog__close {
   user-select: none;
-  size: 44px;
+  width: 44px;
+  height: 44px;
   line-height: 44px;
   position: absolute;
   right: 0;
@@ -134,7 +105,7 @@ $dialog-native: false !default;
   }
 }
 
-@keyframes overlay {
+@keyframes dialog__overlay {
   from {
     opacity: 0;
   }
@@ -144,7 +115,7 @@ $dialog-native: false !default;
   }
 }
 
-@keyframes content {
+@keyframes dialog__content {
   from {
     opacity: 0;
     transform: translate(-50%, -50%) translateY(-20px);
