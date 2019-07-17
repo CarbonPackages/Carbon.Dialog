@@ -56,7 +56,9 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
                     type='button'
                     data-a11y-dialog-hide={true}
                     aria-label={props.closeLabel}
-                >{Type.isString(props.closeButton) ? props.closeButton : ''}</button>
+                >
+                    {Type.isString(props.closeButton) ? props.closeButton : ''}
+                </button>
                 <Neos.Fusion:Tag 
                     @key='title'
                     @if.render={props.titleTagName && props.title && props.title != true}
@@ -64,7 +66,9 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
                     attributes.id={props.id + '-title'}
                     attributes.class={BEM.String(props.namespace, 'title', props.key)}
                     attributes.tabindex='0'
-                >{props.title}</Neos.Fusion:Tag>
+                >
+                    {props.title}
+                </Neos.Fusion:Tag>
                 {props.content}
             </Neos.Fusion:Tag>
         </div>
