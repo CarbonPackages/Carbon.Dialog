@@ -10,6 +10,11 @@
 
     > .dialog__content {
       animation: dialog__content 0.4s 0.15s 1 both;
+      
+      // Fix for IE
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        animation: none;
+      }
     }
   }
 }
@@ -21,6 +26,11 @@
 
   > .dialog__content {
     animation: dialog__content 0.4s 0.15s 1 both;
+    
+    // Fix for IE
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      animation: none;
+    }
   }
 }
 
