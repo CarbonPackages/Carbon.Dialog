@@ -32,27 +32,27 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
 
     // Internal
     carbon = 'carbon-dialog'
-    id = ${BEM.String(this.carbon, this.key)}
+    id = ${BEM.string(this.carbon, this.key)}
 
     renderer = afx`
         <div
             @if.render={props.content}
             id={props.id}
-            class={[props.carbon, BEM.String(props.namespace, null, props.key)]}
+            class={[props.carbon, BEM.modifier(props.namespace, props.key)]}
             aria-hidden={props.native ? false : 'true'}
         >
-            <div @key='overlay' class={[BEM.String(props.carbon, 'overlay'),BEM.String(props.namespace, 'overlay')]} data-a11y-dialog-hide={!props.modal} tabindex='-1'></div>
+            <div @key='overlay' class={[BEM.string(props.carbon, 'overlay'),BEM.string(props.namespace, 'overlay')]} data-a11y-dialog-hide={!props.modal} tabindex='-1'></div>
             <Neos.Fusion:Tag
                 @key='dialog'
                 tagName={props.native ? 'dialog' : 'div'}
                 attributes.role={props.modal ? 'alertdialog' : props.native ? false : 'dialog'}
                 attributes.aria-labelledby={props.title ? props.id + '-title' : false}
-                attributes.class={[BEM.String(props.carbon, 'content'),BEM.String(props.namespace, 'content')]}
+                attributes.class={[BEM.string(props.carbon, 'content'),BEM.string(props.namespace, 'content')]}
             >
                 <button
                     @key='button'
                     @if.render={props.closeButton}
-                    class={BEM.String(props.namespace, 'close')}
+                    class={BEM.string(props.namespace, 'close')}
                     type='button'
                     data-a11y-dialog-hide={true}
                     aria-label={props.closeLabel}
@@ -64,7 +64,7 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
                     @if.render={props.titleTagName && props.title && props.title != true}
                     tagName={props.titleTagName}
                     attributes.id={props.id + '-title'}
-                    attributes.class={BEM.String(props.namespace, 'title', props.key)}
+                    attributes.class={BEM.string(props.namespace, 'title', props.key)}
                     attributes.tabindex='0'
                 >
                     {props.title}
