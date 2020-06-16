@@ -1,0 +1,12 @@
+prototype(Carbon.Dialog:Dialog.Fragment.CloseButton) < prototype(Neos.Fusion:Component) {
+    renderer = afx`
+        <button
+            class={BEM.string(props.namespace, 'close')}
+            type='button'
+            data-a11y-dialog-hide={true}
+            aria-label={props.closeLabel}
+        >
+            {Type.isString(props.closeButton) ? props.closeButton : ''}
+        </button>
+    `
+}

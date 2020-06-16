@@ -1,0 +1,16 @@
+prototype(Carbon.Dialog:Dialog.Fragment.Title) < prototype(Neos.Fusion:Component) {
+
+    @if.hasTitle = ${this.titleTagName && this.title && this.title != true}
+
+    renderer = afx`
+        <Neos.Fusion:Tag 
+            @key='title'
+            tagName={props.titleTagName}
+            attributes.id={props.id + '-title'}
+            attributes.class={BEM.string(props.namespace, 'title', props.key)}
+            attributes.tabindex='0'
+        >
+            {props.title}
+        </Neos.Fusion:Tag>
+    `
+}
