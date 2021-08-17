@@ -25,7 +25,7 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
     closeButton = ${Configuration.setting('Carbon.Dialog.closeButton')}
 
     // Aria label of the close button
-    closeLabel = ${Translation.translate('dialog.close', 'Close this window', [], null, 'Carbon.Dialog')}
+    closeLabel = ${Translation.translate('dialog.close', 'Close this window', [], 'Main', 'Carbon.Dialog')}
 
     // namespace of the dialog
     namespace = 'dialog'
