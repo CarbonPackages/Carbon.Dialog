@@ -2,7 +2,7 @@
     "name": "carbon/dialog",
     "type": "neos-carbon",
     "description": "This package provides a tiny Fusion helper for dialogues.",
-    "license": "MIT",
+    "license": "GPL-3.0",
     "keywords": [
         "flow",
         "neos",
@@ -11,8 +11,8 @@
         "carbon"
     ],
     "require": {
-        "neos/fusion": "^3.3 || ^4.0 || ^5.0 || 7.0",
-        "neos/fusion-afx": "^1.0 || ^7.0",
+        "neos/fusion": "^5.3 || 7.0 || ^8.0",
+        "neos/fusion-afx": "^1.0 || ^7.0 || ^8.0",
         "carbon/eel": "^1.4 || ^2.0"
     },
     "authors": [
@@ -25,11 +25,21 @@
     ],
     "archive": {
         "exclude": [
-            ".editorconfig",
-            ".gitattributes",
             ".github",
+            ".editorconfig",
+            ".eslintignore",
+            ".eslintrc",
+            ".gitattributes",
             ".gitignore",
-            "CODE_OF_CONDUCT.md"
+            ".jshintrc",
+            ".nvmrc",
+            ".postcssrc.yml",
+            ".prettierignore",
+            ".prettierrc",
+            ".stylelintrc",
+            "CODE_OF_CONDUCT.md",
+            "package.json",
+            "pnpm-lock.yaml"
         ]
     },
     "autoload": {

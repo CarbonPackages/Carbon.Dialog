@@ -3,16 +3,13 @@ prototype(Carbon.Dialog:Dialog.Fragment.Dialog) < prototype(Neos.Fusion:Componen
     @if.hasContent = ${this.content}
 
     renderer = afx`
-        <Neos.Fusion:Tag
-            @key='dialog'
-            tagName={props.native ? 'dialog' : 'div'}
-            attributes.role={props.modal ? 'alertdialog' : props.native ? false : 'dialog'}
-            attributes.aria-labelledby={props.title ? props.id + '-title' : false}
-            attributes.class={[BEM.string(props.carbon, 'content'), BEM.string(props.namespace, 'content')]}
+        <div
+            role="document"
+            class={[BEM.string(props.carbon, 'content'), BEM.string(props.namespace, 'content')]}
         >
             <Carbon.Dialog:Dialog.Fragment.CloseButton @key='button' @if.render={props.closeButton} {...props} />
             <Carbon.Dialog:Dialog.Fragment.Title @key='title' {...props} />
             {props.content}
-        </Neos.Fusion:Tag>
+        </div>
     `
 }

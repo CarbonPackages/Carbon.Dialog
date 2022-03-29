@@ -11,10 +11,7 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
     // The tag name of the title
     titleTagName = ${Configuration.setting('Carbon.Dialog.titleTagName')}
 
-    // Make usage of the native <dialog> tag, if possible. Drawback:
-    // If the User click on the background, the modal doesn't get closed
-    native = ${Configuration.setting('Carbon.Dialog.native')}
-    
+   
     // By default, the dialog behaves as a dialog: it is closable with
     // the ESC key, and by clicking the backdrop. However, it is possible
     // to make it work like a "modal", which would remove these features.
@@ -43,9 +40,11 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
         <div
             id={props.id}
             class={[props.carbon, BEM.modifier(props.namespace, props.key)]}
-            aria-hidden={props.native ? false : 'true'}
+            role={props.modal ? 'alertdialog' : 'dialog'}
+            aria-labelledby={props.title ? props.id + '-title' : null}
+            aria-hidden='true'
         >
-            <Carbon.Dialog:Dialog.Fragment.Overlay @key='overlay' @if.set={props.showOverlay} {...props} setKey={false} />
+            <Carbon.Dialog:Dialog.Fragment.Overlay @key='overlay' @if.set={props.showOverlay} {...props} />
             <Carbon.Dialog:Dialog.Fragment.Dialog @key='dialog' {...props} />
         </div>
     `
