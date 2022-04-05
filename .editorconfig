@@ -13,18 +13,12 @@ indent_style = space
 indent_size = 4
 
 # Exceptions
-[{*.{yaml,yml,sh,jscsrc,scss},package.json,.*rc}]
+[{*.{yaml,yml,sh,jscsrc,pcss},package.json,.*rc}]
 indent_size = 2
 
-[*.{json,scss}]
+[*.{json,pcss}]
 max_line_length = 1000
 
-[Sites.xml]
-indent_size = 1
+[*.md]
+trim_trailing_whitespace = false
 
-[*.{note,md,edit,read}]
-trim_trailing-whitespace = false
-
-[Makefile]
-indent_style = tab
-indent_size = 1

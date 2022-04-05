@@ -1,0 +1,20 @@
+:root {
+  --dialog-index-base: 9999;
+}
+
+.carbon-dialog[aria-hidden="true"] {
+  display: none;
+}
+
+.carbon-dialog__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--dialog-index-base);
+}
+
+.carbon-dialog__content {
+  z-index: calc(var(--dialog-index-base) + 1);
+}

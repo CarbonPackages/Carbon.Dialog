@@ -1,41 +1,28 @@
-@import "Base";
+@import "Base.pcss";
 
-@if $dialog-native {
-  dialog[open] {
-    display: block;
-
-    &::backdrop {
-      animation: dialog__overlay 0.2s 1 both;
-    }
-
-    > .dialog__content {
-      animation: dialog__content 0.4s 0.15s 1 both;
-
-      // Fix for IE
-      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-        animation: none;
-      }
-    }
-  }
+:root {
+  --dialog-overlay-opacity: 0.5;
+  --dialog-overlay-background: rgba(0, 0, 0, var(--dialog-overlay-opacity, 0.5));
+  --dialog-background: #fff;
+  --dialog-border: 0;
+  --dialog-box-shadow: 0 0 10px var(--dialog-overlay-background);
+  --dialog-max-width: 850px;
+  --dialog-margin: 30px;
+  --dialog-padding: 30px;
 }
 
 .dialog:not([aria-hidden="true"]) {
-  > .dialog__overlay {
+  & > .dialog__overlay {
     animation: dialog__overlay 0.2s 1 both;
   }
 
-  > .dialog__content {
+  & > .dialog__content {
     animation: dialog__content 0.4s 0.15s 1 both;
-
-    // Fix for IE
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      animation: none;
-    }
   }
 }
 
 .dialog__overlay {
-  background-color: rgba($dialog-overlay-background, $dialog-overlay-opacity);
+  background-color: var(--dialog-overlay-background);
 }
 
 .dialog__title {
@@ -43,28 +30,20 @@
 }
 
 .dialog__content {
-  background: $dialog-background;
+  background: var(--dialog-background);
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-height: calc(100vh - #{$dialog-margin});
+  max-height: calc(100vh - var(--dialog-margin));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: $dialog-padding;
-  width: calc(100vw - #{$dialog-margin});
-  max-width: $dialog-max-width;
+  padding: var(--dialog-padding);
+  width: calc(100vw - var(--dialog-margin));
+  max-width: var(--dialog-max-width);
   margin: 0 auto;
-
-  @if $dialog-box-shadow {
-    box-shadow: #{$dialog-box-shadow} rgba($dialog-overlay-background, $dialog-overlay-opacity);
-  }
-
-  @if $dialog-border-width != 0 and $dialog-border-width and $dialog-border-color {
-    border: $dialog-border-width solid $dialog-border-color;
-  } @else {
-    border: 0;
-  }
+  box-shadow: var(--dialog-box-shadow);
+  border: var(--dialog-border);
 
   @media only screen and (max-width: 400px) {
     width: 100vw;

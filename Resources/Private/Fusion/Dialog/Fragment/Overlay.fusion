@@ -1,12 +1,9 @@
 prototype(Carbon.Dialog:Dialog.Fragment.Overlay) < prototype(Neos.Fusion:Component) {
-    setKey = true
-
     renderer = afx`
         <div
-            @key='overlay'
             class={[BEM.string(props.carbon, 'overlay'), BEM.string(props.namespace, 'overlay')]}
-            data-a11y-dialog-hide={props.modal ? false : props.setKey && props.key ? props.key : true}
-            tabindex='-1'
+            data-a11y-dialog-hide={!props.modal}
+            aria-hidden="true"
         ></div>
     `
 }
