@@ -11,9 +11,10 @@
         "carbon"
     ],
     "require": {
-        "neos/fusion": "^5.3 || 7.0 || ^8.0",
+        "neos/fusion": "^5.3 || ^7.0 || ^8.0",
         "neos/fusion-afx": "^1.0 || ^7.0 || ^8.0",
-        "carbon/eel": "^1.4 || ^2.0"
+        "carbon/eel": "^1.4 || ^2.0",
+        "sitegeist/slipstream": "^1.1.1 || ^2.1.2"
     },
     "authors": [
         {

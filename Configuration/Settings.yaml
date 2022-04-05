@@ -11,6 +11,9 @@ Carbon:
     # If set to false, no close button will be shown
     closeButton: '&times;'
 
+    includeCSS: true
+    includeJS: true
+
 Neos:
   Neos:
     fusion:

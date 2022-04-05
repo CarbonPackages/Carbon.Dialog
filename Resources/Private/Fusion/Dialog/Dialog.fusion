@@ -34,6 +34,15 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
     carbon = 'carbon-dialog'
     id = ${BEM.string(this.carbon, this.key)}
 
+    includeCSS = ${Configuration.setting('Carbon.Dialog.includeCSS')}
+    includeJS = ${Configuration.setting('Carbon.Dialog.includeJS')}
+    css = Neos.Fusion:ResourceUri {
+        path = 'resource://Carbon.Dialog/Public/Main.css'
+    }
+    js = Neos.Fusion:ResourceUri {
+        path = 'resource://Carbon.Dialog/Public/Main.js'
+    }
+
     @if.hasContent = ${this.content}
 
     renderer = afx`
@@ -44,6 +53,8 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
             aria-labelledby={props.title ? props.id + '-title' : null}
             aria-hidden='true'
         >
+            <link @if.set={props.includeCSS && props.css} rel="stylesheet" href={props.css} data-slipstream />
+            <script @if.set={props.includeJS && props.js} src={props.js} data-slipstream defer></script>
             <Carbon.Dialog:Dialog.Fragment.Overlay @key='overlay' @if.set={props.showOverlay} {...props} />
             <Carbon.Dialog:Dialog.Fragment.Dialog @key='dialog' {...props} />
         </div>
