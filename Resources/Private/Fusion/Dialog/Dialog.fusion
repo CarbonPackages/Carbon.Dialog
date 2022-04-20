@@ -44,6 +44,10 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
     }
 
     @if.hasContent = ${this.content}
+    
+     // https://github.com/sandstorm/Sandstorm.CookiePunch is installed
+     _sandstormCookiePunchIsInstalled = ${Configuration.setting('Neos.Neos.fusion.autoInclude')['Sandstorm.CookiePunch']}
+     dataNeverBlock = ${!!this._sandstormCookiePunchIsInstalled}
 
     renderer = afx`
         <div
@@ -54,7 +58,7 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
             aria-hidden='true'
         >
             <link @if.set={props.includeCSS && props.css} rel="stylesheet" href={props.css} data-slipstream />
-            <script @if.set={props.includeJS && props.js} src={props.js} data-slipstream defer></script>
+            <script @if.set={props.includeJS && props.js} src={props.js} data-slipstream defer data-never-block={props.dataNeverBlock}></script>
             <Carbon.Dialog:Dialog.Fragment.Overlay @key='overlay' @if.set={props.showOverlay} {...props} />
             <Carbon.Dialog:Dialog.Fragment.Dialog @key='dialog' {...props} />
         </div>
