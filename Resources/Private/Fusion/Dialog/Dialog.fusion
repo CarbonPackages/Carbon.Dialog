@@ -11,12 +11,12 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
     // The tag name of the title
     titleTagName = ${Configuration.setting('Carbon.Dialog.titleTagName')}
 
-   
+
     // By default, the dialog behaves as a dialog: it is closable with
     // the ESC key, and by clicking the backdrop. However, it is possible
     // to make it work like a "modal", which would remove these features.
     modal = ${Configuration.setting('Carbon.Dialog.modal')}
-    
+
     // If set to false, no close button will be shown
     // If it is a string, it will renderd as content of the button
     closeButton = ${Configuration.setting('Carbon.Dialog.closeButton')}
@@ -44,11 +44,6 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
     }
 
     @if.hasContent = ${this.content}
-    
-     // https://github.com/sandstorm/Sandstorm.CookiePunch is installed
-     _sandstormCookiePunchIsInstalled = ${Configuration.setting('Neos.Neos.fusion.autoInclude')['Sandstorm.CookiePunch']}
-     dataNeverBlock = ${!!this._sandstormCookiePunchIsInstalled}
-
     renderer = afx`
         <div
             id={props.id}
@@ -58,7 +53,7 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
             aria-hidden='true'
         >
             <link @if.set={props.includeCSS && props.css} rel="stylesheet" href={props.css} data-slipstream />
-            <script @if.set={props.includeJS && props.js} src={props.js} data-slipstream defer data-never-block={props.dataNeverBlock}></script>
+            <script @if.set={props.includeJS && props.js} src={props.js} data-slipstream defer></script>
             <Carbon.Dialog:Dialog.Fragment.Overlay @key='overlay' @if.set={props.showOverlay} {...props} />
             <Carbon.Dialog:Dialog.Fragment.Dialog @key='dialog' {...props} />
         </div>

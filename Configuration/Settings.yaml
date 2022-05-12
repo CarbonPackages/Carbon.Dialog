@@ -19,3 +19,12 @@ Neos:
     fusion:
       autoInclude:
         Carbon.Dialog: true
+
+# Don't block the modal if Sandstorm.CookiePunch ist installed
+Sandstorm:
+  CookiePunch:
+    blocking:
+      tagPatterns:
+        script:
+          'Carbon/Carbon.Dialog':
+            block: false
