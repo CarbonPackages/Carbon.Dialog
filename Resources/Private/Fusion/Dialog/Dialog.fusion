@@ -30,6 +30,9 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
     // show the overlay
     showOverlay = true
 
+    // Move the modal to antoher location
+    slipstream = null
+
     // Internal
     carbon = 'carbon-dialog'
     id = ${BEM.string(this.carbon, this.key)}
@@ -45,15 +48,16 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
 
     @if.hasContent = ${this.content}
     renderer = afx`
+        <link @if.set={props.includeCSS && props.css} rel="stylesheet" href={props.css} data-slipstream />
+        <script @if.set={props.includeJS && props.js} src={props.js} data-slipstream defer></script>
         <div
             id={props.id}
             class={[props.carbon, BEM.modifier(props.namespace, props.key)]}
             role={props.modal ? 'alertdialog' : 'dialog'}
             aria-labelledby={props.title ? props.id + '-title' : null}
             aria-hidden='true'
+            data-slipstream={props.slipstream}
         >
-            <link @if.set={props.includeCSS && props.css} rel="stylesheet" href={props.css} data-slipstream />
-            <script @if.set={props.includeJS && props.js} src={props.js} data-slipstream defer></script>
             <Carbon.Dialog:Dialog.Fragment.Overlay @key='overlay' @if.set={props.showOverlay} {...props} />
             <Carbon.Dialog:Dialog.Fragment.Dialog @key='dialog' {...props} />
         </div>
