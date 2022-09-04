@@ -31,7 +31,7 @@ prototype(Carbon.Dialog:Dialog) < prototype(Neos.Fusion:Component) {
     showOverlay = true
 
     // Move the modal to antoher location
-    slipstream = null
+    slipstream = ${null}
 
     // Internal
     carbon = 'carbon-dialog'
