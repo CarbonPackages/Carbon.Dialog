@@ -12,3 +12,4 @@
 /eslint.config.mjs export-ignore
 /package.json export-ignore
 /pnpm-lock.yaml export-ignore
+/pnpm-workspace export-ignore
